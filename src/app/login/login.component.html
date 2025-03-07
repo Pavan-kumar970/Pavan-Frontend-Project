@@ -1,0 +1,37 @@
+<div class="center-container">
+    <div class="login-card">
+        <h2>Login</h2>
+        <form (ngSubmit)="login()">
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" [(ngModel)]="name" name="name" required />
+            </div>
+
+            <div class="input-group password-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input [type]="passwordFieldType" id="password" placeholder="Enter your password" [(ngModel)]="password" name="password" required />
+                    <mat-icon class="eye-icon" (click)="togglePasswordVisibility()">
+                        {{ passwordFieldType === 'password' ? 'visibility' : 'visibility_off' }}
+                    </mat-icon>
+                </div>
+            </div>
+
+            <!-- Loader before navigating to dashboard -->
+            <div class="loader-container" *ngIf="loading">
+                <div class="loader"></div>
+            </div>
+
+            <button type="submit" [disabled]="loading">Login</button>
+        </form>
+
+        <!-- Notification Message -->
+        <div *ngIf="showNotification" class="notification">
+            {{ message }}
+        </div>
+        <p class="forgot-password">
+            <a routerLink="/forgot-password">Forgot Password?</a>
+          </p>
+          
+    </div>
+</div>

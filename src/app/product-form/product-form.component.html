@@ -1,0 +1,28 @@
+<h2>Add Product</h2>
+<form (ngSubmit)="saveProduct()" #productForm="ngForm">
+  <div>
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="product.name" name="name" required>
+  </div>
+  <div>
+    <label>Description:</label>
+    <input type="text" [(ngModel)]="product.description" name="description" required>
+  </div>
+  <div>
+    <label>Price:</label>
+    <input type="number" [(ngModel)]="product.price" name="price" required>
+  </div>
+  <div>
+    <label>Category:</label>
+    <input type="text" [(ngModel)]="product.category" name="category" required>
+  </div>
+  <div>
+    <label>Stock:</label>
+    <input type="number" [(ngModel)]="product.stock" name="stock" required>
+  </div>
+  <div>
+    <label>Image URL:</label>
+    <input type="text" [(ngModel)]="product.image" name="image">
+  </div>
+  <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+</form>

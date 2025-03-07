@@ -1,0 +1,42 @@
+<div class="center-container">
+    <div class="register-card">
+        <h2>Register</h2>
+        
+        <form *ngIf="!isOtpSent; else otpVerificationForm" (ngSubmit)="sendOTP()">
+            <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required />
+            <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+            <input type="text" placeholder="Phone Number" [(ngModel)]="number" name="number" required />
+
+            <div class="password-container">
+                <input [type]="showPassword ? 'text' : 'password'" placeholder="Set a Password" [(ngModel)]="password" name="password" required />
+                <span class="toggle-password" (click)="togglePassword()">
+                    <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                </span>
+            </div>
+
+            <div class="password-container">
+                <input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Re-enter Password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+                <span class="toggle-password" (click)="toggleConfirmPassword()">
+                    <i class="fa" [ngClass]="{'fa-eye': !showConfirmPassword, 'fa-eye-slash': showConfirmPassword}"></i>
+                </span>
+            </div>
+
+            <p *ngIf="passwordMismatch" class="error">Passwords do not match!</p>
+
+            <button type="submit" [disabled]="passwordMismatch">Send OTP</button>
+        </form>
+
+        <!-- OTP Verification Form -->
+        <ng-template #otpVerificationForm>
+            <form (ngSubmit)="verifyOTP()">
+                <input type="text" placeholder="Enter OTP" [(ngModel)]="otp" name="otp" required />
+                <button type="submit">Verify OTP & Register</button>
+            </form>
+        </ng-template>
+
+        <p [ngClass]="message.includes('successfully') ? 'success' : 'error'">{{ message }}</p>
+
+        <!-- Login Button -->
+        <button class="login-button" (click)="navigateToLogin()">Login</button>
+    </div>
+</div>

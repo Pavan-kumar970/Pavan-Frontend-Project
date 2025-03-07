@@ -1,0 +1,36 @@
+<div class="settings-container">
+    <h2>Settings</h2>
+  
+    <!-- User Profile Section -->
+    <div class="settings-section">
+      <h3>Profile Information</h3>
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Phone:</strong> {{ user.phone }}</p>
+      <p><strong>Address:</strong> {{ user.address }}</p>
+      <button (click)="updateProfile()">Edit Profile</button>
+    </div>
+  
+    <!-- Payment Methods -->
+    <div class="settings-section">
+      <h3>Payment Methods</h3>
+      <p>Credit Card: **** **** **** 1234</p>
+      <button>Edit Payment Methods</button>
+    </div>
+  
+    <!-- Order Preferences -->
+    <div class="settings-section">
+      <h3>Order Preferences</h3>
+      <p>Preferred Shipping: Standard Delivery</p>
+      <p>Notifications: Enabled</p>
+      <button>Edit Preferences</button>
+    </div>
+  
+    <!-- Security Settings -->
+    <div class="settings-section">
+      <h3>Security Settings</h3>
+      <p>Password: ********</p>
+      <button>Change Password</button>
+    </div>
+  </div>
+  

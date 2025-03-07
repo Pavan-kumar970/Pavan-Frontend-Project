@@ -1,0 +1,153 @@
+/* ===========================
+   🌟 Global Layout
+=========================== */
+.dashboard-container {
+  height: 100vh;
+  display: flex;
+  background: #f9fbfd; /* Very light blue-gray */
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===========================
+   📌 Sidebar (Light Theme)
+=========================== */
+.sidenav {
+  width: 260px;
+  padding: 20px;
+  background: #ffffff; /* White sidebar */
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   📌 Main Content Area (Improved Layout)
+=========================== */
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: #f5f7fa; /* Soft light gray */
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.mat-toolbar {
+  background: #e3f2fd; /* Soft blue */
+  color: #333;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+   📌 Container (Improved UI)
+=========================== */
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  color: #343a40;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ===========================
+   📊 Stats Grid (Dashboard Cards)
+=========================== */
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  width: 250px;
+  text-align: center;
+  background: #ffffff; /* White background */
+  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card mat-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+  color: #007bff; /* Soft blue */
+}
+
+.stat-card h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.stat-card p {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ===========================
+   📱 Responsive Design (Mobile-friendly)
+=========================== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidenav {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .stats-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card {
+    width: 90%;
+  }
+}
