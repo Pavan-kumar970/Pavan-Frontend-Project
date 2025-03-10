@@ -3,7 +3,7 @@
         <h2>Register</h2>
         
         <form *ngIf="!isOtpSent; else otpVerificationForm" (ngSubmit)="sendOTP()">
-            <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required />
+            <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" required />
             <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
             <input type="text" placeholder="Phone Number" [(ngModel)]="number" name="number" required />
 
@@ -37,6 +37,6 @@
         <p [ngClass]="message.includes('successfully') ? 'success' : 'error'">{{ message }}</p>
 
         <!-- Login Button -->
-        <button class="login-button" (click)="navigateToLogin()">Login</button>
+        <button class="login-button" (click)="navigateToLogin()">Already have an account? Login</button>
     </div>
 </div>
