@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-
+import { environment } from '../../environments/environment';
 // ✅ Define a User Interface for Type Safety
 interface AuthResponse {
   token: string;
@@ -13,8 +13,8 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth';
-  private listapiUrl = 'http://localhost:5000/api/auth/users'; 
+  private apiUrl = `${environment.apiUrl}/auth`;
+  private listapiUrl = `${environment.apiUrl}/auth/users`; 
   private authState = new BehaviorSubject<boolean>(this.isAuthenticated()); // Auth state tracking
 
   constructor(private http: HttpClient) {}
