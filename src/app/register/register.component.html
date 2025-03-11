@@ -1,6 +1,6 @@
 <div class="center-container">
     <div class="register-card">
-        <h2>Register User</h2>
+        <h2>Register user</h2>
         
         <form *ngIf="!isOtpSent; else otpVerificationForm" (ngSubmit)="sendOTP()">
             <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" required />
