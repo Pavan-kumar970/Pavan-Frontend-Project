@@ -13,8 +13,8 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/auth`;
-  private listapiUrl = `${environment.apiUrl}/auth/users`; 
+  private apiUrl = `${environment.apiUrl}/api/auth`;
+  private listapiUrl = `${environment.apiUrl}/api/auth/users`; 
   private authState = new BehaviorSubject<boolean>(this.isAuthenticated()); // Auth state tracking
 
   constructor(private http: HttpClient) {}
