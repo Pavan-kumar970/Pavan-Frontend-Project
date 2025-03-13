@@ -13,7 +13,7 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/api/auth`;  // ✅ Corrected path
+  private apiUrl = `${environment.apiUrl}/auth`;  // ✅ Corrected path
   private listapiUrl = `${environment.apiUrl}/auth/users`; 
   private authState = new BehaviorSubject<boolean>(this.isAuthenticated()); // Auth state tracking
 
