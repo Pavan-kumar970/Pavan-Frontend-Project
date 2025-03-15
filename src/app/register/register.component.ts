@@ -19,6 +19,12 @@ export class RegisterComponent {
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
 
+  isSendingOtp: boolean = false;  // Track OTP sending state
+  showLoader: boolean = false;    // Show loader during OTP send request
+  
+  passwordFieldType: string = 'password';
+  confirmPasswordFieldType: string = 'password';
+
   constructor(private authService: AuthService, private router: Router) {}
 
   get passwordMismatch(): boolean {
@@ -28,26 +34,34 @@ export class RegisterComponent {
   // ✅ Step 1: Send OTP
   sendOTP() {
     if (this.passwordMismatch) {
-      this.message = "Passwords do not match!";
-      return;
+        this.message = "Passwords do not match!";
+        return;
     }
 
+    this.isSendingOtp = true;  // Disable button
+    this.showLoader = true;    // Show loader
+
     const userData = {
-      name: this.name,
-      email: this.email,
-      password: this.password,
-      number: this.number
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        number: this.number
     };
 
-    this.authService.sendOTP(userData).subscribe({
-      next: () => {
-        this.message = "OTP sent to your number. Please verify.";
-        this.isOtpSent = true;
-      },
-      error: (err) => this.message = err.error.message || "Failed to send OTP."
-    });
-  }
-
+    this.authService.sendOTP(userData).subscribe(
+        (response) => {  // ✅ Corrected syntax
+            this.message = "OTP sent to your number. Please verify.";
+            this.isOtpSent = true;
+            this.showLoader = false;  // Hide loader
+            this.isSendingOtp = false; // Re-enable button
+        },
+        (error) => {  // ✅ Corrected syntax
+            this.message = error.error.message || "Failed to send OTP.";
+            this.isSendingOtp = false; // Enable button on failure
+            this.showLoader = false;  // Hide loader
+        }
+    );
+}
   // ✅ Step 2: Verify OTP & Register User
   verifyOTP() {
     const otpData = { number: this.number, otp: this.otp };
@@ -79,13 +93,15 @@ export class RegisterComponent {
     });
   }
 
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
+// Toggle visibility for the password field
+togglePasswordVisibility() {
+  this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+}
 
-  toggleConfirmPassword() {
-    this.showConfirmPassword = !this.showConfirmPassword;
-  }
+// Toggle visibility for the confirm password field
+toggleConfirmPasswordVisibility() {
+  this.confirmPasswordFieldType = this.confirmPasswordFieldType === 'password' ? 'text' : 'password';
+}
 
   navigateToLogin() {
     this.router.navigate(['/login']);

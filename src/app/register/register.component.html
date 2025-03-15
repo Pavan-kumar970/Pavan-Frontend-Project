@@ -1,29 +1,39 @@
 <div class="center-container">
     <div class="register-card">
-        <h2>Register user</h2>
-        
+        <h2>Register User</h2>
+
         <form *ngIf="!isOtpSent; else otpVerificationForm" (ngSubmit)="sendOTP()">
             <input type="text" placeholder="Full Name" [(ngModel)]="name" name="name" required />
             <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
             <input type="text" placeholder="Phone Number" [(ngModel)]="number" name="number" required />
 
-            <div class="password-container">
-                <input [type]="showPassword ? 'text' : 'password'" placeholder="Set a Password" [(ngModel)]="password" name="password" required />
-                <span class="toggle-password" (click)="togglePassword()">
-                    <i class="fa" [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
-                </span>
+            <div class="password-group">
+                <div class="password-container">
+                    <input [type]="passwordFieldType" id="password" placeholder="Enter password" [(ngModel)]="password" name="password" required />
+                    <mat-icon class="eye-icon" (click)="togglePasswordVisibility()">
+                        {{ passwordFieldType === 'password' ? 'visibility' : 'visibility_off' }}
+                    </mat-icon>
+                </div>
             </div>
 
-            <div class="password-container">
-                <input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Re-enter Password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
-                <span class="toggle-password" (click)="toggleConfirmPassword()">
-                    <i class="fa" [ngClass]="{'fa-eye': !showConfirmPassword, 'fa-eye-slash': showConfirmPassword}"></i>
-                </span>
+            <div class="password-group">
+                <div class="password-container">
+                    <input [type]="confirmPasswordFieldType" id="confirmPassword" placeholder="Confirm password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+                    <mat-icon class="eye-icon" (click)="toggleConfirmPasswordVisibility()">
+                        {{ confirmPasswordFieldType === 'password' ? 'visibility' : 'visibility_off' }}
+                    </mat-icon>
+                </div>
             </div>
 
             <p *ngIf="passwordMismatch" class="error">Passwords do not match!</p>
 
-            <button type="submit" [disabled]="passwordMismatch">Send OTP</button>
+            <!-- Send OTP Button with Loader -->
+            <button type="submit" [disabled]="passwordMismatch || isSendingOtp">
+                <span *ngIf="!isSendingOtp">Send OTP</span>
+                <span *ngIf="isSendingOtp">
+                    <i class="fa fa-spinner fa-spin"></i> Sending OTP...
+                </span>
+            </button>
         </form>
 
         <!-- OTP Verification Form -->
